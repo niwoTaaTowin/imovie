@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Order 对象的resultMap -->
+<mapper namespace="com.imovie.collect.mapper.CollectMapper">
+	
+	<select id="queryCollectionsByUserId" 
+		parameterType="String"
+		resultType="Collections">
+		select * from collection where user_id = #{userId};
+	</select>
+	
+	
+	<select id="selectExistByUIdAndRId" 
+		parameterType="Collections"
+		resultType="Collections">
+		select * from collection where user_id=#{userId} and review_id=#{reviewId};
+	</select>
+	
+	<!-- 添加收藏 -->
+	<insert id="insertCollections" parameterType="Collections">
+		insert into collection (
+			system_no,
+			user_id,
+			collection_time,
+			collection_tag,
+			review_id,
+			review_content,
+			review_title) values(
+			#{systemNo},
+			#{userId},
+			#{collectionTime},
+			#{collectionTag},
+			#{reviewId},
+			#{reviewContent},
+			#{reviewTitle});
+	</insert>
+	<delete id="deleteCollectionsByIdAndReviewId" parameterType="Collections">
+		delete from collection where user_id=#{userId} and review_id=#{reviewId};
+	</delete>
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+

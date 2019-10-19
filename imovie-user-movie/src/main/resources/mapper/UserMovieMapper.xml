@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Order 对象的resultMap -->
+<mapper namespace="com.imovie.usermovie.mapper.UserMovieMapper">
+	<select id="selectUserMovieByUIdAndMId" parameterType="UserMovie" resultType="UserMovie">
+		select * from user_movie where user_id=#{userId} and mv_id=#{mvId};
+	</select>
+	
+	<select id="selectUserMovieByUIdAndWOW" parameterType="UserMovie" resultType="UserMovie">
+		select * from user_movie where user_id=#{userId} and want_or_watched=#{wantOrWatched};
+	</select>
+	
+	<update id="updateUserMovieWOWByUIdAndMId" parameterType="UserMovie">
+		update user_movie set want_or_watched=#{wantOrWatched} where user_id=#{userId} and mv_id=#{mvId};
+	</update>
+	
+	<insert id="insertUserMovie">
+		insert into user_movie (
+			system_no,
+			user_id,
+			mv_id,
+			want_or_watched,
+			like_time,
+			mv_img_url,
+			mv_name,
+			mv_point,
+			mv_date,
+			mv_director,
+			mv_actor,
+			mv_language,
+			mv_type_id,
+			mv_district) values(
+			#{systemNo},
+			#{userId},
+			#{mvId},
+			#{wantOrWatched},
+			#{likeTime},
+			#{mvImgUrl},
+			#{mvName},
+			#{mvPoint},
+			#{mvDate},
+			#{mvDirector},
+			#{mvActor},
+			#{mvLanguage},
+			#{mvTypeId},
+			#{mvDistrict});
+	</insert>
+	
+	<delete id="deleteUserMovieByUIdAndMId" parameterType="UserMovie">
+		delete from user_movie where user_id=#{userId} and mv_id=#{mvId}; 
+	</delete>
+	
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+
